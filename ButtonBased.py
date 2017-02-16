@@ -140,16 +140,21 @@ class gear(items):
         self.avoidChance = avoidChance
     def description(self):
         returned = ""
-        if self.name != "empty":
-            returned += "Name: " + self.name + "\nArmor: " + str(self.armor) + "\nMana: " + str(self.mana)
-        print(returned)
+        returned += "Name: " + str(self.name)
+            if self.armor != int:
+                returned += "\nArmor: " + str(self.armor)
+            if self.mana != int:
+                returned += "\nMana: " + str(self.mana)
+            if self.avoidChance != int:
+                returned += "\nChance to avoid damage: " + str(self.avoidChance)
+        return returned
 
 class weapon(items):
     name = ""
     mana = 0
     damage = 0
-    critChance = 0.0
-    critMultiplier = 0
+    critChance = 0
+    critMultiplier = 0.0
     accuracy = 0.0
     def __init__(self):
         self.name = "empty"
@@ -164,9 +169,18 @@ class weapon(items):
         self.accuracy = accuracy
     def description(self):
         returned = ""
-        if self.name != "empty":
-            returned += "Name: " + self.name + "\nDamage: " + str(self.damage) + "\nMana: " + str(self.mana)
-        print(returned)
+        returned += "Name: " + str(self.name)
+            if self.mana != int:
+                returned += "\nMana: " + str(self.mana)
+            if self.damage != int:
+                returned += "\nDamage: " + str(self.damage)
+            if self.critChance != int:
+                returned += "\nChance to deal Critical damage: " + str(self.critChance)
+            if self.critMultiplier != float:
+                returned += "\nCritical Damage Multiplier: " + str(self.critMultiplier)
+            if self.accuracy !=float:
+                returned += "\nAccuracy: " + str(self.accuracy)
+        return returned
 
 class potion(items):
     name = ""
@@ -182,9 +196,12 @@ class potion(items):
         self.health = health
     def description(self):
         returned = ""
-        if returned != "empty":
-            returned += "Name: " + self.name + "\nHealth: " + str(self.health)+ "\nMana:" + str(self.mana)
-        print(returned)
+        returned += "Name: " + self.name
+        if self.health != int:
+            returned += "\nHealth: " + self.health
+        if self.mana != int:
+            returned += "\nMana: " + self.mana
+        return returned
 
 class spell(items):
     name = ""
@@ -222,6 +239,38 @@ class spell(items):
         self.hasBeenCast = hasBeenCast
         self.stamina = stamina
         self.accuracy = accuracy
+    def description(self):
+        returned = ""
+        returned += "Name: " + str(self.name)
+            if self.mana != int:
+                returned += "\nMana: " + str(self.mana)
+            if self.damage != int:
+                returned += "\nDamage: " + str(self.damage)
+            if self.health != int:
+                returned += "\nHealing: " + str(self.health)
+            if self.armor != int:
+                returned += "\nArmor Change: " + str(self.armor)
+            if self.attack != int:
+                returned += "\nAttack Change: " + str(self.attack)
+            if self.turnsBurning != int:
+                returned += "\nBurning Turns: " + str(self.turnsBurning)
+            if self.turnsFrozen != int:
+                returned += "\nFrozen Turns: " + str(self.turnsFrozen)
+            if self.turnsStunned != int:
+                returned += "\nStunned Turns: " + str(self.turnsStunned)
+            if self.turnsBuffed != int:
+                returned += "\nTurns Buffed: "+ str(self.turnsBuffed)
+            if self.turnsCast != int:
+                returned += "\nTurns Cast: "+ str(self.turnsCast)
+            if self.cooldown != int:
+                returned += "\nCooldown: " + str(self.cooldown)
+            if self.hasBeenCast != bool:
+                returned += "\nHas Been Cast: " + str(self.hasBeenCast)
+            if self.stamina != int:
+                returned += "\nStamina Change: " + str(self.stamina)
+            if self.accuracy != float:
+                returned += "\nAccuracy: " + str(self.accuracy)
+        return returned
 
 class gameScreen:
     def __init__(self, master):
@@ -282,26 +331,28 @@ class detailsScreen:
         for widget in self.frame.winfo_children():
             widget.destroy()
         resetButton = Button(self.frame, text = "Details Screen", command = self.resetScreen)
-        resetButton.pack(side = LEFT)
+        resetButton.pack(side = TOP)
     def inventorySelected(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
         resetButton = Button(self.frame, text= "Details Screen", command = self.resetScreen)
-        resetButton.pack(side = LEFT)
+        resetButton.pack(side = TOP)
     def equipmentSelected(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
+        test = Label(self.frame, text = char.equipment[0].description())
+        test.pack(side = TOP)
         resetButton = Button(self.frame, text = "Details Screen", command = self.resetScreen)
-        resetButton.pack(side = LEFT)
+        resetButton.pack(side = TOP)
     def resetScreen(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
         charButton = Button(self.frame, text = "Character Details", command = self.detailsSelected)
-        charButton.pack(side= LEFT)
+        charButton.pack(side= TOP)
         inventory = Button(self.frame, text = "Show Inventory", command = self.inventorySelected)
-        inventory.pack(side= LEFT)
+        inventory.pack(side= TOP)
         equipment = Button(self.frame, text = "Show Equipment", command = self.equipmentSelected)
-        equipment.pack(side = LEFT)
+        equipment.pack(side = TOP)
         
     
 def start():
