@@ -3,9 +3,6 @@ from tkinter import *
 root = Tk()
 root.title("Kroz")
 root.withdraw()
-maxHealth = 0
-maxMana = 0
-maxStamina = 0
 nextBattle = ""
 lastBattle = ""
 print("Type: start()")
@@ -16,6 +13,9 @@ class Player:
     mana = 0
     stamina = 0
     avoidChance = 0
+    maxHealth = 0
+    maxStamina = 0
+    maxMana = 0
     inventory = []
     equipment = []
     spellList = []
@@ -28,15 +28,23 @@ class Player:
         self.health = 0
         self.Class = ""
     def display(self):
-        print(self.name)
-        print(self.health)
-        print(self.Class)
+        returned = ""
+        returned += "Name: "+ self.name
+        returned += "\nClass: " + self.Class
+        returned += "\nHealth: " + str(self.health) + "/" + str(self.maxHealth)
+        if self.maxMana != 0:
+            returned += "\nMana: " + str(self.mana) + "/" + str(self.maxMana)
+        if self.maxStamina != 0:
+            returned += "\nStamina " + str(self.stamina) + "/" + str(self.maxStamina)
+        if self.avoidChance != 0:
+            returned += "\nAvoid Chance: " + str(self.avoidChance) + "%"
+        return returned
     def mageClass(self):
         self.health = 100
         self.attack = 5
         self.mana = 200
-        maxHealth = self.health
-        maxMana = self.mana
+        self.maxHealth = self.health
+        self.maxMana = self.mana
         self.inventory.append(potion())
         self.inventory[0].setDetails("Health Potion", health=  50)
         self.inventory.append(potion())
@@ -58,7 +66,7 @@ class Player:
     def warriorClass(self):
         self.health = 150
         self.attack = 10
-        maxHealth = self.health
+        self.maxHealth = self.health
         self.inventory.append(potion())
         self.inventory.append(potion())
         self.inventory.append(potion())
@@ -80,8 +88,8 @@ class Player:
         self.health = 100
         self.attack = 5
         self.stamina = 200
-        maxHealth = self.health
-        maxStamina = self.stamina
+        self.maxHealth = self.health
+        self.maxStamina = self.stamina
         self.inventory.append(potion())
         self.inventory.append(potion())
         self.inventory.append(potion())
@@ -95,6 +103,12 @@ class Player:
         self.equipment[1].setDetails("Buckler", avoidChance = 10, armor = 5)
         self.equipment.append(weapon())
         self.equipment[2].setDetails("Dagger", damage = 15, critChance = 20, critMultiplier = 2.0)
+        self.spellList.append(spell())
+        self.spellList[0].setDetails("Backstab", damage = 30, stamina = 50, critChance = 10, critMultiplier = 2.0)
+        self.spellList.append(spell())
+        self.spellList[1].setDetails("Find Weakness", stamina = 40, critChance = 100, critMultiplier= 3.0)
+        self.spellList.append(spell())
+        self.spellList[2].setDetails("Assassinate", damage = 150, stamina = 200)
         
 char = Player()
 
@@ -141,12 +155,12 @@ class gear(items):
     def description(self):
         returned = ""
         returned += "Name: " + str(self.name)
-            if self.armor != int:
+        if self.armor != int:
                 returned += "\nArmor: " + str(self.armor)
-            if self.mana != int:
+        if self.mana != int:
                 returned += "\nMana: " + str(self.mana)
-            if self.avoidChance != int:
-                returned += "\nChance to avoid damage: " + str(self.avoidChance)
+        if self.avoidChance != int:
+                returned += "\nChance to avoid damage: " + str(self.avoidChance) + "%"
         return returned
 
 class weapon(items):
@@ -170,15 +184,15 @@ class weapon(items):
     def description(self):
         returned = ""
         returned += "Name: " + str(self.name)
-            if self.mana != int:
+        if self.mana != int:
                 returned += "\nMana: " + str(self.mana)
-            if self.damage != int:
+        if self.damage != int:
                 returned += "\nDamage: " + str(self.damage)
-            if self.critChance != int:
-                returned += "\nChance to deal Critical damage: " + str(self.critChance)
-            if self.critMultiplier != float:
+        if self.critChance != int:
+                returned += "\nChance to deal Critical damage: " + str(self.critChance) + "%"
+        if self.critMultiplier != float:
                 returned += "\nCritical Damage Multiplier: " + str(self.critMultiplier)
-            if self.accuracy !=float:
+        if self.accuracy !=float:
                 returned += "\nAccuracy: " + str(self.accuracy)
         return returned
 
@@ -198,9 +212,9 @@ class potion(items):
         returned = ""
         returned += "Name: " + self.name
         if self.health != int:
-            returned += "\nHealth: " + self.health
+            returned += "\nHealth: " + str(self.health)
         if self.mana != int:
-            returned += "\nMana: " + self.mana
+            returned += "\nMana: " + str(self.mana)
         return returned
 
 class spell(items):
@@ -219,11 +233,13 @@ class spell(items):
     hasBeenCast = False #use with turnsCast spells
     stamina = 0 #use with rogue spells
     accuracy = 0.0
+    critChance = 0
+    critMultiplier = 0.0
     def __init__(self):
         self.name = "empty"
         self.mana = 0
         self.damage = 0
-    def setDetails(self,name, mana = 0, damage = 0, health = 0, armor = 0, attack = 0, turnsB = 0, turnsF = 0, turnsS = 0, turnsBuffed = 0, turnsCast = 0, cooldown = 0, hasBeenCast = False, stamina = 0, accuracy = float):
+    def setDetails(self,name, mana = int, damage = int, health = int, armor = int, attack = int, turnsB = int, turnsF = int, turnsS = int, turnsBuffed = int, turnsCast = int, cooldown = int, hasBeenCast = bool, stamina = int, accuracy = float, critChance = int, critMultiplier = float):
         self.name = name
         self.mana = mana
         self.damage = damage
@@ -239,37 +255,43 @@ class spell(items):
         self.hasBeenCast = hasBeenCast
         self.stamina = stamina
         self.accuracy = accuracy
+        self.critChance = critChance
+        self.critMultiplier = critMultiplier
     def description(self):
         returned = ""
         returned += "Name: " + str(self.name)
-            if self.mana != int:
-                returned += "\nMana: " + str(self.mana)
-            if self.damage != int:
-                returned += "\nDamage: " + str(self.damage)
-            if self.health != int:
-                returned += "\nHealing: " + str(self.health)
-            if self.armor != int:
-                returned += "\nArmor Change: " + str(self.armor)
-            if self.attack != int:
-                returned += "\nAttack Change: " + str(self.attack)
-            if self.turnsBurning != int:
-                returned += "\nBurning Turns: " + str(self.turnsBurning)
-            if self.turnsFrozen != int:
-                returned += "\nFrozen Turns: " + str(self.turnsFrozen)
-            if self.turnsStunned != int:
-                returned += "\nStunned Turns: " + str(self.turnsStunned)
-            if self.turnsBuffed != int:
-                returned += "\nTurns Buffed: "+ str(self.turnsBuffed)
-            if self.turnsCast != int:
-                returned += "\nTurns Cast: "+ str(self.turnsCast)
-            if self.cooldown != int:
-                returned += "\nCooldown: " + str(self.cooldown)
-            if self.hasBeenCast != bool:
-                returned += "\nHas Been Cast: " + str(self.hasBeenCast)
-            if self.stamina != int:
-                returned += "\nStamina Change: " + str(self.stamina)
-            if self.accuracy != float:
-                returned += "\nAccuracy: " + str(self.accuracy)
+        if self.mana != int:
+            returned += "\nMana: " + str(self.mana)
+        if self.damage != int:
+            returned += "\nDamage: " + str(self.damage)
+        if self.health != int:
+            returned += "\nHealing: " + str(self.health)
+        if self.armor != int:
+            returned += "\nArmor Change: " + str(self.armor)
+        if self.attack != int:
+            returned += "\nAttack Change: " + str(self.attack)
+        if self.turnsBurning != int:
+            returned += "\nBurning Turns: " + str(self.turnsBurning)
+        if self.turnsFrozen != int:
+            returned += "\nFrozen Turns: " + str(self.turnsFrozen)
+        if self.turnsStunned != int:
+            returned += "\nStunned Turns: " + str(self.turnsStunned)
+        if self.turnsBuffed != int:
+            returned += "\nTurns Buffed: "+ str(self.turnsBuffed)
+        if self.turnsCast != int:
+            returned += "\nTurns Cast: "+ str(self.turnsCast)
+        if self.cooldown != int:
+            returned += "\nCooldown: " + str(self.cooldown)
+        if self.hasBeenCast != bool:
+            returned += "\nHas Been Cast: " + str(self.hasBeenCast)
+        if self.stamina != int:
+            returned += "\nStamina Change: " + str(self.stamina)
+        if self.accuracy != float:
+            returned += "\nAccuracy: " + str(self.accuracy)
+        if self.critChance != int:
+            returned += "\nChance to Crit: " + str(self.critChance)
+        if self.critMultiplier != float:
+            returned += "\nCrit Multiplier: " + str(self.critMultiplier)
         return returned
 
 class gameScreen:
@@ -330,20 +352,16 @@ class detailsScreen:
     def detailsSelected(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
-        resetButton = Button(self.frame, text = "Details Screen", command = self.resetScreen)
-        resetButton.pack(side = TOP)
+        label = Label(self.frame, text = char.display())
+        label.pack(side = TOP)
+        resetButton = Button(self.frame, text = "Return", command = self.resetScreen)
+        resetButton.pack(side= TOP)
     def inventorySelected(self):
-        for widget in self.frame.winfo_children():
-            widget.destroy()
-        resetButton = Button(self.frame, text= "Details Screen", command = self.resetScreen)
-        resetButton.pack(side = TOP)
+        self.showNewButtons(char.inventory)
     def equipmentSelected(self):
-        for widget in self.frame.winfo_children():
-            widget.destroy()
-        test = Label(self.frame, text = char.equipment[0].description())
-        test.pack(side = TOP)
-        resetButton = Button(self.frame, text = "Details Screen", command = self.resetScreen)
-        resetButton.pack(side = TOP)
+        self.showNewButtons(char.equipment)
+    def spellsSelected(self):
+        self.showNewButtons(char.spellList)
     def resetScreen(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
@@ -353,6 +371,41 @@ class detailsScreen:
         inventory.pack(side= TOP)
         equipment = Button(self.frame, text = "Show Equipment", command = self.equipmentSelected)
         equipment.pack(side = TOP)
+        spells = Button(self.frame, text = "Show Spells", command = self.spellsSelected)
+        spells.pack(side = TOP)
+        beginGame = Button(self.frame, text = "Start Tutorial", command = self.startGame)
+        beginGame.pack(side=  TOP)
+    def showNewButtons(self,selection = list):
+        for widget in self.frame.winfo_children():
+            widget.destroy()
+        x = 0
+        while x < len(selection):
+            self.createNewButton(selection[x], selection)
+            x += 1
+        resetButton = Button(self.frame, text = "Return", command = self.resetScreen)
+        resetButton.pack(side = TOP)
+    def showDescription(self, item, selection):
+        for widget in self.frame.winfo_children():
+            widget.destroy()
+        label = Label(self.frame, text = item.description())
+        label.pack(side = TOP)
+        resetButton = Button(self.frame, text = "Return", command = lambda: self.showNewButtons(selection = selection))
+        resetButton.pack(side = TOP)
+    def createNewButton(self, selection, selectedList):
+        button = Button(self.frame, text = selection.name, command = lambda:  self.showDescription(selection, selectedList))
+        button.pack(side=TOP)
+    def startGame(self):
+        for widget in self.frame.winfo_children():
+            widget.destroy()
+        self.frame.pack_forget()
+        x = battleScreen(root)
+class battleScreen:
+    def __init__(self, master):
+        self.frame = Frame(master)
+        self.frame.pack()
+        button = Button(self.frame, text = "S")
+        button.pack(side = TOP)
+        
         
     
 def start():
