@@ -5,7 +5,12 @@ root.title("Kroz")
 root.withdraw()
 nextBattle = ""
 lastBattle = ""
-print("Type: start()")
+
+
+
+
+
+
 class Player:
     name = ""
     health = 0
@@ -125,7 +130,7 @@ class items:
     turnsBuffed = 0
     atkBoost = 0
     cd = 0
-    bossCounter = 0
+    bossCounter = False
     hasBeenCast = False
     health = 0
     mana = 0
@@ -312,9 +317,11 @@ class gameScreen:
         details = detailsScreen(root)
     def start(self):
         self.button.destroy()
+        nameField = Label(self.frame, text = "Name: ")
+        nameField.pack(side = LEFT)
         entryField = Entry(self.frame)
         entryField.pack(side=LEFT)
-        okay = Button(self.frame, text = "Confirm", command = lambda: self.okaySelected(okay, entryField))
+        okay = Button(self.frame, text = "Confirm", command = lambda: self.okaySelected(nameField, okay, entryField))        
         okay.pack(side=LEFT)
     def warriorSelected(self, warrior, mage,rogue):
         warrior.destroy()
@@ -332,11 +339,14 @@ class gameScreen:
         char.rogueClass()
         self.frame.pack_forget()
         details = detailsScreen(root)
-    def okaySelected(self, button, field):
+    def okaySelected(self, name, button, field):
+        name.destroy()
         button.destroy()
         name = field.get()
         field.destroy()
         char.name = name
+        if char.name == '':
+            char.name = "Stranger"
         mage = Button(self.frame,text = "Mage", command = lambda: self.mageSelected(mage, warrior, rogue))
         mage.pack(side=LEFT)
         warrior = Button(self.frame, text = "Warrior", command = lambda: self.warriorSelected(warrior, mage, rogue))
@@ -412,5 +422,6 @@ def start():
     TEST = gameScreen(root)
     root.mainloop()
 
-    
+
+start()
     
