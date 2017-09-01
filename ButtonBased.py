@@ -11,7 +11,7 @@ lastBattle = ""
 
 
 
-class Player:
+class Character:
     name = ""
     health = 0
     Class = ""
@@ -21,9 +21,11 @@ class Player:
     maxHealth = 0
     maxStamina = 0
     maxMana = 0
+    normalAttack = 0
     inventory = []
     equipment = []
     spellList = []
+    attack = 0
     def setDetails(self, name, health, Class):
       self.name = name
       self.health = health
@@ -35,12 +37,15 @@ class Player:
     def display(self):
         returned = ""
         returned += "Name: "+ self.name
-        returned += "\nClass: " + self.Class
+        if self.Class != "Enemy":
+            returned += "\nClass: " + self.Class
         returned += "\nHealth: " + str(self.health) + "/" + str(self.maxHealth)
         if self.maxMana != 0:
             returned += "\nMana: " + str(self.mana) + "/" + str(self.maxMana)
         if self.maxStamina != 0:
-            returned += "\nStamina " + str(self.stamina) + "/" + str(self.maxStamina)
+            returned += "\nStamina: " + str(self.stamina) + "/" + str(self.maxStamina)
+        if self.attack != 0:
+            returned += "\nDamage: " + str(self.attack) + "\nNatural Damage: " + str(self.normalAttack)
         if self.avoidChance != 0:
             returned += "\nAvoid Chance: " + str(self.avoidChance) + "%"
         return returned
@@ -50,6 +55,7 @@ class Player:
         self.mana = 200
         self.maxHealth = self.health
         self.maxMana = self.mana
+        self.normalAttack = self.attack
         self.inventory.append(potion())
         self.inventory[0].setDetails("Health Potion", health=  50)
         self.inventory.append(potion())
@@ -72,6 +78,7 @@ class Player:
         self.health = 150
         self.attack = 10
         self.maxHealth = self.health
+        self.normalAttack = self.attack
         self.inventory.append(potion())
         self.inventory.append(potion())
         self.inventory.append(potion())
@@ -95,6 +102,7 @@ class Player:
         self.stamina = 200
         self.maxHealth = self.health
         self.maxStamina = self.stamina
+        self.normalAttack = self.attack
         self.inventory.append(potion())
         self.inventory.append(potion())
         self.inventory.append(potion())
@@ -114,8 +122,22 @@ class Player:
         self.spellList[1].setDetails("Find Weakness", stamina = 40, critChance = 100, critMultiplier= 3.0)
         self.spellList.append(spell())
         self.spellList[2].setDetails("Assassinate", damage = 150, stamina = 200)
+        self.avoidChance = 20
+    def enemyClass(self, h, a, s, m, i, e, sp, av):
+        self.health = h
+        self.attack = a
+        self.stamina = s
+        self.mana = m
+        self.inventory = i
+        self.equipment = e
+        self.spellList = sp
+        self.maxHealth = h
+        self.maxStamina = s
+        self.maxMana = m
+        self.avoidChance = av
+        self.normalAttack = a
         
-char = Player()
+char = Character()
 
 class items:
     name = ""
@@ -413,6 +435,14 @@ class battleScreen:
     def __init__(self, master):
         self.frame = Frame(master)
         self.frame.pack()
+        td = Character()
+        td.Class = "Enemy"
+        td.name = "Training Dummy"
+        inventory = []
+        inventory.append(potion().setDetails("Health Potion", health = 50))
+        td.enemyClass(100, 4, 0,0, inventory, None, None, 0)
+        label = Label(self.frame, text = td.display())
+        label.pack(side = TOP)
         button = Button(self.frame, text = "S")
         button.pack(side = TOP)
         
