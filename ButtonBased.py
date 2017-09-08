@@ -436,6 +436,7 @@ class battleScreen:
         self.frame = Frame(master)
         self.frame.pack()
         td = Character()
+
         #Need if statement that varies based on the encounter so that this can be used for all fights
         td.Class = "Enemy"
         td.name = "Training Dummy"
