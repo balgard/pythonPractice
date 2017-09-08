@@ -5,6 +5,11 @@ root.title("Kroz")
 root.withdraw()
 nextBattle = ""
 lastBattle = ""
+battleList = []
+battleList.append("Tutorial Battle")
+battleList.append("Second Tutorial")
+
+
 
 
 
@@ -136,7 +141,7 @@ class Character:
         self.maxMana = m
         self.avoidChance = av
         self.normalAttack = a
-        
+
 char = Character()
 
 class items:
@@ -161,7 +166,7 @@ class items:
     avoidChance = 0
     stamina = 0
     accuracy = 0.0
-    
+
 class gear(items):
     name = ""
     armor = 0
@@ -343,7 +348,7 @@ class gameScreen:
         nameField.pack(side = LEFT)
         entryField = Entry(self.frame)
         entryField.pack(side=LEFT)
-        okay = Button(self.frame, text = "Confirm", command = lambda: self.okaySelected(nameField, okay, entryField))        
+        okay = Button(self.frame, text = "Confirm", command = lambda: self.okaySelected(nameField, okay, entryField))
         okay.pack(side=LEFT)
     def warriorSelected(self, warrior, mage,rogue):
         warrior.destroy()
@@ -436,6 +441,7 @@ class battleScreen:
         self.frame = Frame(master)
         self.frame.pack()
         td = Character()
+
         #Need if statement that varies based on the encounter so that this can be used for all fights
         td.Class = "Enemy"
         td.name = "Training Dummy"
@@ -446,13 +452,12 @@ class battleScreen:
         label.pack(side = TOP)
         button = Button(self.frame, text = "S")
         button.pack(side = TOP)
-        
-        
-    
+
+
+
 def start():
     TEST = gameScreen(root)
     root.mainloop()
 
 
 start()
-    
