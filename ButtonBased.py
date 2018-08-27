@@ -10,12 +10,6 @@ battleList.append("Tutorial Battle")
 battleList.append("Second Tutorial")
 
 
-
-
-
-
-
-
 class Character:
     name = ""
     health = 0
@@ -31,11 +25,6 @@ class Character:
     equipment = []
     spellList = []
     attack = 0
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> parent of 2e72e6c... Error cleanup
     def setDetails(self, name, health, Class):
       self.name = name
       self.health = health
@@ -183,13 +172,7 @@ class gear(items):
         self.armor = 0
         self.mana = 0
         self.bossCounter = False
-<<<<<<< HEAD
-
-    
-    def setDetails(self, name, armor=int, mana=int, bossCounter=bool, avoidChance=int):
-=======
     def setDetails(self, name, armor = int, mana = int, bossCounter = bool, avoidChance = int):
->>>>>>> parent of 2e72e6c... Error cleanup
         self.name = name
         self.armor = armor
         self.mana = mana
@@ -217,13 +200,7 @@ class weapon(items):
         self.name = "empty"
         self.mana = 0
         self.damage = 0
-<<<<<<< HEAD
-    
-
-    def setDetails(self, name, mana=int, damage=int, critChance=int, critMultiplier=float, accuracy=float):
-=======
     def setDetails(self, name, mana = int, damage = int, critChance = int, critMultiplier = float, accuracy = float):
->>>>>>> parent of 2e72e6c... Error cleanup
         self.name = name
         self.mana = mana
         self.damage = damage
@@ -288,15 +265,7 @@ class spell(items):
         self.name = "empty"
         self.mana = 0
         self.damage = 0
-<<<<<<< HEAD
-    
-
-    def setDetails(self, name, mana=int, damage=int, health=int, armor=int, attack=int, turnsB=int, turnsF=int,
-                   turnsS=int, turnsBuffed=int, turnsCast=int, cooldown=int, hasBeenCast=bool, stamina=int,
-                   accuracy=float, critChance=int, critMultiplier=float):
-=======
     def setDetails(self,name, mana = int, damage = int, health = int, armor = int, attack = int, turnsB = int, turnsF = int, turnsS = int, turnsBuffed = int, turnsCast = int, cooldown = int, hasBeenCast = bool, stamina = int, accuracy = float, critChance = int, critMultiplier = float):
->>>>>>> parent of 2e72e6c... Error cleanup
         self.name = name
         self.mana = mana
         self.damage = damage
@@ -367,11 +336,6 @@ class gameScreen:
         char.mageClass()
         self.frame.pack_forget()
         details = detailsScreen(root)
-<<<<<<< HEAD
-    
-
-=======
->>>>>>> parent of 2e72e6c... Error cleanup
     def start(self):
         self.button.destroy()
         nameField = Label(self.frame, text = "Name: ")
@@ -416,12 +380,6 @@ class detailsScreen:
         self.frame = Frame(master)
         self.frame.pack()
         self.resetScreen()
-<<<<<<< HEAD
-
-    
-
-=======
->>>>>>> parent of 2e72e6c... Error cleanup
     def detailsSelected(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
@@ -435,28 +393,6 @@ class detailsScreen:
         self.showNewButtons(char.equipment)
     def spellsSelected(self):
         self.showNewButtons(char.spellList)
-<<<<<<< HEAD
-
-    
-
-    def resetScreen(self):
-        for widget in self.frame.winfo_children():
-            widget.destroy()
-        charButton = Button(self.frame, text="Character Details", command=self.detailsSelected)
-        charButton.pack(side=TOP)
-        inventory = Button(self.frame, text="Show Inventory", command=self.inventorySelected)
-        inventory.pack(side=TOP)
-        equipment = Button(self.frame, text="Show Equipment", command=self.equipmentSelected)
-        equipment.pack(side=TOP)
-        spells = Button(self.frame, text="Show Spells", command=self.spellsSelected)
-        spells.pack(side=TOP)
-        beginGame = Button(self.frame, text="Start Tutorial", command=self.startGame)
-        beginGame.pack(side=TOP)
-
-    
-
-    def showNewButtons(self, selection=list):
-=======
     def resetScreen(self):
         for widget in self.frame.winfo_children():
             widget.destroy()
@@ -471,23 +407,14 @@ class detailsScreen:
         beginGame = Button(self.frame, text = "Start Tutorial", command = self.startGame)
         beginGame.pack(side=  TOP)
     def showNewButtons(self,selection = list):
->>>>>>> parent of 2e72e6c... Error cleanup
         for widget in self.frame.winfo_children():
             widget.destroy()
         x = 0
         while x < len(selection):
             self.createNewButton(selection[x], selection)
             x += 1
-<<<<<<< HEAD
-        resetButton = Button(self.frame, text="Return", command=self.resetScreen)
-        resetButton.pack(side=TOP)
-
-    
-
-=======
         resetButton = Button(self.frame, text = "Return", command = self.resetScreen)
         resetButton.pack(side = TOP)
->>>>>>> parent of 2e72e6c... Error cleanup
     def showDescription(self, item, selection):
         for widget in self.frame.winfo_children():
             widget.destroy()
@@ -523,10 +450,6 @@ class battleScreen:
 
 
 def start():
-<<<<<<< HEAD
-    
-=======
->>>>>>> parent of 2e72e6c... Error cleanup
     TEST = gameScreen(root)
     root.mainloop()
 
