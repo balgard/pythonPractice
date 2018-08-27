@@ -26,7 +26,7 @@ class Character:
     spellList = []
     attack = 0
 
-    # noinspection PyPep8Naming
+    
     def setDetails(self, name, health, Class):
         self.name = name
         self.health = health
@@ -185,7 +185,7 @@ class Gear(items):
         self.mana = 0
         self.bossCounter = False
 
-    # noinspection PyPep8Naming
+    
     def setDetails(self, name, armor=int, mana=int, bossCounter=bool, avoidChance=int):
         self.name = name
         self.armor = armor
@@ -217,7 +217,7 @@ class Weapon(items):
         self.name = "empty"
         self.mana = 0
         self.damage = 0
-    # noinspection PyPep8Naming
+    
 
     def setDetails(self, name, mana=int, damage=int, critChance=int, critMultiplier=float, accuracy=float):
         self.name = name
@@ -291,7 +291,7 @@ class Spell(items):
         self.name = "empty"
         self.mana = 0
         self.damage = 0
-    # noinspection PyPep8Naming
+    
 
     def setDetails(self, name, mana=int, damage=int, health=int, armor=int, attack=int, turnsB=int, turnsF=int,
                    turnsS=int, turnsBuffed=int, turnsCast=int, cooldown=int, hasBeenCast=bool, stamina=int,
@@ -369,7 +369,7 @@ class GameScreen:
         char.mageClass()
         self.frame.pack_forget()
         details = detailsScreen(root)
-    # noinspection PyPep8Naming
+    
 
     def start(self):
         self.button.destroy()
@@ -420,7 +420,7 @@ class DetailsScreen:
         self.frame.pack()
         self.resetScreen()
 
-    # noinspection PyPep8Naming
+    
 
     def detailsSelected(self):
         for widget in self.frame.winfo_children():
@@ -439,7 +439,7 @@ class DetailsScreen:
     def spellsSelected(self):
         self.showNewButtons(char.spellList)
 
-    # noinspection PyPep8Naming
+    
 
     def resetScreen(self):
         for widget in self.frame.winfo_children():
@@ -455,7 +455,7 @@ class DetailsScreen:
         beginGame = Button(self.frame, text="Start Tutorial", command=self.startGame)
         beginGame.pack(side=TOP)
 
-    # noinspection PyPep8Naming
+    
 
     def showNewButtons(self, selection=list):
         for widget in self.frame.winfo_children():
@@ -467,7 +467,7 @@ class DetailsScreen:
         resetButton = Button(self.frame, text="Return", command=self.resetScreen)
         resetButton.pack(side=TOP)
 
-    # noinspection PyPep8Naming
+    
 
     def showDescription(self, item, selection):
         for widget in self.frame.winfo_children():
@@ -507,7 +507,7 @@ class BattleScreen:
 
 
 def start():
-    # noinspection PyPep8Naming
+    
     TEST = gameScreen(root)
     root.mainloop()
 
