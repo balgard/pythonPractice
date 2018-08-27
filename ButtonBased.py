@@ -10,12 +10,6 @@ battleList.append("Tutorial Battle")
 battleList.append("Second Tutorial")
 
 
-
-
-
-
-
-
 class Character:
     name = ""
     health = 0
