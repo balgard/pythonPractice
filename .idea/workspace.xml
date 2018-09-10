@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e4797aa-771c-4cea-9264-df7dbb50d71e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ButtonBased.py" beforeDir="false" afterPath="$PROJECT_DIR$/ButtonBased.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,12 +35,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="24" />
+          <entry key="py" value="1344" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="24" />
+          <entry key="Python" value="1344" />
         </counts>
       </usages-collector>
     </session>
@@ -51,8 +50,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ButtonBased.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+            <state relative-caret-position="1287">
+              <caret line="545" lean-forward="true" selection-start-line="545" selection-end-line="545" />
+              <folding>
+                <element signature="e#5225#5587#0" />
+                <element signature="e#5613#6472#0" />
+                <element signature="e#6500#7635#0" />
+                <element signature="e#7663#8216#0" />
+                <element signature="e#8243#11269#0" />
+                <marker date="1536597744774" expanded="true" signature="17047:17052" ph="..." />
+                <marker date="1536597744774" expanded="true" signature="17047:17056" ph="..." />
+                <marker date="1536597744774" expanded="true" signature="17121:17130" ph="..." />
+                <marker date="1536597744774" expanded="true" signature="17197:17206" ph="..." />
+                <marker date="1536597744774" expanded="true" signature="17290:17299" ph="..." />
+                <marker date="1536597744774" expanded="true" signature="17414:17423" ph="..." />
+                <marker date="1536597744774" expanded="true" signature="17578:17587" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -110,6 +123,34 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="ButtonBased" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="pythonPractice" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ButtonBased.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.ButtonBased" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -132,7 +173,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32944915" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -155,8 +196,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ButtonBased.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+        <state relative-caret-position="1287">
+          <caret line="545" lean-forward="true" selection-start-line="545" selection-end-line="545" />
+          <folding>
+            <element signature="e#5225#5587#0" />
+            <element signature="e#5613#6472#0" />
+            <element signature="e#6500#7635#0" />
+            <element signature="e#7663#8216#0" />
+            <element signature="e#8243#11269#0" />
+            <marker date="1536597744774" expanded="true" signature="17047:17052" ph="..." />
+            <marker date="1536597744774" expanded="true" signature="17047:17056" ph="..." />
+            <marker date="1536597744774" expanded="true" signature="17121:17130" ph="..." />
+            <marker date="1536597744774" expanded="true" signature="17197:17206" ph="..." />
+            <marker date="1536597744774" expanded="true" signature="17290:17299" ph="..." />
+            <marker date="1536597744774" expanded="true" signature="17414:17423" ph="..." />
+            <marker date="1536597744774" expanded="true" signature="17578:17587" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -8,7 +8,7 @@ lastBattle = ""
 battleList = []
 battleList.append("Tutorial Battle")
 battleList.append("Second Tutorial")
-# dev test branch
+currentBattle = battleList[0]
 
 
 class Character:
@@ -475,29 +475,77 @@ class detailsScreen:
         battleScreen(root)
 
 
+td = Character()
+
+
 class battleScreen:
+
     def __init__(self, master):
         self.frame = Frame(master)
         self.frame.pack()
-        td = Character()
+        self.createEnemy()
+        if char.health > 0 and td.health > 0:
+            self.combat()
 
-        # Need if statement that varies based on the encounter so that this can be used for all fights
-        td.Class = "Enemy"
+    def createEnemy(self):
+        if currentBattle == "Tutorial Battle":
+                td.Class = "Enemy"
+                td.name = "Training Dummy"
+                inventory = []
+                td.enemyClass(100, 4, 0, 0, inventory, None, None, 0)
+                td.inventory.append(potion())
+                td.inventory[0].setDetails("Health Potion", health=50)
+                label = Label(self.frame, text=td.display())
+                label.pack(side=TOP)
+                button = Button(self.frame, text="S")
+                button.pack(side=TOP)
+                print("Works")
 
-        td.name = "Training Dummy"
-        inventory = []
+    def combat(self):
+        self.statusCheck()
+        self.playerTurn()
+        self.statusUpdate()
+        self.endTurnStats()
+        if char.health > 0 and td.health > 0:
+            self.combat()
+        elif char.health <= 0:
+            self.gameLost()
+        else:
+            self.battleWon()
+            detailsScreen(root)
 
-        td.enemyClass(100, 4, 0, 0, inventory, None, None, 0)
-        td.inventory.append(potion())
-        td.inventory[0].setDetails("Health Potion", health=50)
-        label = Label(self.frame, text=td.display())
-        label.pack(side=TOP)
-        button = Button(self.frame, text="S")
-        button.pack(side=TOP)
+    def statusCheck(self):
+        # check status effects
+        print()
+
+    def playerTurn(self):
+        # Player turn
+        self.enemyTurn()
+
+    def statusUpdate(self):
+        # update the status of player and enemy
+        print()
+
+    def endTurnStats(self):
+        # end turn damage info
+        print()
+
+    def gameLost(self):
+        print("You lost")
+
+    def battleWon(self):
+        # restore health of character
+        if currentBattle == "Tutorial Battle":
+            # rewards of battles
+            print()
+
+    def enemyTurn(self):
+        # enemy actions based on which enemy it is
+        print()
 
 
 def start():
-    TEST = gameScreen(root)
+    gameScreen(root)
     root.mainloop()
 
 
