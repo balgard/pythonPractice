@@ -163,7 +163,6 @@ class items:
     bossCounter = False
     hasBeenCast = False
     health = 0
-    mana = 0
     critChance = 0
     critMultiplier = 0.0
     avoidChance = 0
@@ -472,7 +471,7 @@ class detailsScreen:
         for widget in self.frame.winfo_children():
             widget.destroy()
         self.frame.pack_forget()
-        x = battleScreen(root)
+        battleScreen(root)
 
 
 class battleScreen:
@@ -485,7 +484,7 @@ class battleScreen:
         td.Class = "Enemy"
 
         td.name = "Training Dummy"
-        inventory=[]
+        inventory = []
 
         td.enemyClass(100, 4, 0, 0, inventory, None, None, 0)
         td.inventory.append(potion())
