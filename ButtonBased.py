@@ -15,7 +15,7 @@ battleList = []
 battleList.append("Tutorial Battle")
 battleList.append("Second Tutorial")
 #   dev test branch
-
+# GIT DEV BRANCH TEST
 
 char = Character()
 
